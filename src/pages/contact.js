@@ -10,7 +10,7 @@ const Contact = () => {
       </div>
       <div className={styles.formControl}>
         <form
-          name="contact"
+          name="contact-form"
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
@@ -39,20 +39,3 @@ const Contact = () => {
 }
 
 export default Contact
-
-const handleSubmit = event => {
-  event.preventDefault()
-
-  const myForm = event.target
-  const formData = new FormData(myForm)
-
-  fetch("/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams(formData).toString(),
-  })
-    .then(() => console.log("Form successfully submitted"))
-    .catch(error => alert(error))
-}
-
-document.querySelector("form").addEventListener("submit", handleSubmit)
