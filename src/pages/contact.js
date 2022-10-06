@@ -14,22 +14,24 @@ const Contact = () => {
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
+          onSubmit="submit"
         >
+          <input type="hidden" name="form-name" value="contact-form"></input>
           <label>
             Name
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name" required />
           </label>
           <label>
             Email
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required />
           </label>
           <label>
             Subject
-            <input type="text" name="subject" id="subject" />
+            <input type="text" name="subject" id="subject" required />
           </label>
           <label>
             Message
-            <textarea name="message" id="message" rows="5" />
+            <textarea name="message" id="message" rows="5" required />
           </label>
           <button type="submit">Submit</button>
         </form>
