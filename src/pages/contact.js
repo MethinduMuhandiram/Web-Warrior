@@ -10,13 +10,15 @@ const Contact = () => {
       </div>
       <div className={styles.formControl}>
         <form
-          name="contact-form"
+          name="Contact"
           method="post"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
           onSubmit="submit"
+          action='/'
+
         >
-          <input type="hidden" name="form-name" value="contact-form"></input>
+          <input type="hidden" name="form-name" value="Contact"></input>
           <label>
             Name
             <input type="text" name="name" id="name" required />
