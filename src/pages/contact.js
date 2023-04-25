@@ -17,6 +17,7 @@ const Contact = () => {
           onSubmit="submit"
           action='/'
         >
+            
           <input type="hidden" name="form-name" value="Contact"></input>
           <label>
             Name
