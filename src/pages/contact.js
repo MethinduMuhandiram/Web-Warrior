@@ -51,7 +51,6 @@ const ContactForm = () => {
         data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
       >
-        <input type="hidden" name="form-name" value="Contact"></input>
         <p hidden>
           <label>
             Don’t fill this out: <input name="bot-field" onChange={() => {}} />

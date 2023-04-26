@@ -38,7 +38,6 @@ const Subscribe = () => {
         onSubmit={handleSubscribe}
         className="w-full flex flex-col md:flex-row align-middle"
       >
-        <input type="hidden" name="form-name" value="Subscribe"></input>
         <TextField
           name="email"
           type="email"
