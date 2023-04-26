@@ -1,10 +1,21 @@
-import React from "react"
+import React, { useState } from "react"
 import Layout from "../components/Layout"
 import * as styles from "../styles/contact.module.css"
 
-import { TextField, Button } from "@mui/material"
+import { TextField, Button, Switch } from "@mui/material"
 
+// Form Helpers
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
 const Contact = () => {
+  const [checked, setChecked] = useState(true)
+
+  const switchHandler = event => {
+    setChecked(event.target.checked)
+  }
   return (
     <Layout>
       <div>
@@ -78,7 +89,14 @@ const Contact = () => {
             />
           </div>
 
+          {/* Switch */}
+          <div className="flex my-5 gap-2 items-center">
+            <Switch defaultChecked color="primary" onChange={switchHandler} />
+            <p className="text-sm">I agree to the terms and conditions</p>
+          </div>
+
           <Button
+            disabled={!checked}
             type="submit"
             variant="contained"
             className="w-full bg-[#085879] hover:bg-[#0878a8] disabled:bg-slate-400"
