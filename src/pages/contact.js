@@ -2,6 +2,8 @@ import React from "react"
 import Layout from "../components/Layout"
 import * as styles from "../styles/contact.module.css"
 
+import { TextField, Button } from "@mui/material"
+
 const Contact = () => {
   return (
     <Layout>
@@ -13,29 +15,76 @@ const Contact = () => {
           name="Contact"
           method="post"
           data-netlify="true"
+          action="/success"
           data-netlify-honeypot="bot-field"
           onSubmit="submit"
-          action='/'
         >
-            
           <input type="hidden" name="form-name" value="Contact"></input>
-          <label>
-            Name
-            <input type="text" name="name" id="name" required />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" id="email" required />
-          </label>
-          <label>
-            Subject
-            <input type="text" name="subject" id="subject" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" id="message" rows="5" required />
-          </label>
-          <button type="submit">Submit</button>
+          <div className="flex flex-col md:flex-row my-5 gap-5">
+            <TextField
+              id="full-name"
+              name="full-name"
+              type="text"
+              label="Full Name"
+              required
+              variant="outlined"
+              className="w-full"
+              sx={{
+                backgroundColor: "white",
+              }}
+            />
+            <TextField
+              id="company"
+              name="company"
+              type="text"
+              label="Company"
+              required
+              variant="outlined"
+              className="w-full"
+              sx={{
+                backgroundColor: "white",
+              }}
+            />
+          </div>
+
+          <div className="my-5">
+            <TextField
+              id="email"
+              name="email"
+              type="email"
+              label="Email Address"
+              required
+              variant="outlined"
+              className="w-full"
+              sx={{
+                backgroundColor: "white",
+              }}
+            />
+          </div>
+
+          <div className="my-5 ">
+            <TextField
+              id="message"
+              name="message"
+              type="text"
+              label="Your Message"
+              required
+              multiline
+              rows={4}
+              className="w-full"
+              sx={{
+                backgroundColor: "white",
+              }}
+            />
+          </div>
+
+          <Button
+            type="submit"
+            variant="contained"
+            className="w-full bg-[#085879] hover:bg-[#0878a8] disabled:bg-slate-400"
+          >
+            Send Message
+          </Button>
         </form>
       </div>
     </Layout>
