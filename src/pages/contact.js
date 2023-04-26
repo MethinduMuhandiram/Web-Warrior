@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { navigate } from "gatsby-link"
 import Layout from "../components/Layout"
 import * as styles from "../styles/contact.module.css"
 
@@ -12,6 +13,28 @@ function encode(data) {
 }
 const Contact = () => {
   const [checked, setChecked] = useState(true)
+  const [fullName, setFullName] = useState("")
+  const [company, setCompany] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "Contact",
+        fullName,
+        company,
+        email,
+        message,
+      }),
+    })
+      .then(() => navigate(form.getAttribute("action")))
+      .catch(error => console.log(error))
+  }
 
   const switchHandler = event => {
     setChecked(event.target.checked)
@@ -28,7 +51,8 @@ const Contact = () => {
           data-netlify="true"
           action="/success"
           data-netlify-honeypot="bot-field"
-          onSubmit="submit"
+          // onSubmit="submit"
+          onSubmit={handleSubmit}
         >
           <input type="hidden" name="form-name" value="Contact"></input>
           <div className="flex flex-col md:flex-row my-5 gap-5">
@@ -43,6 +67,7 @@ const Contact = () => {
               sx={{
                 backgroundColor: "white",
               }}
+              onChange={e => setFullName(e.target.value)}
             />
             <TextField
               id="company"
@@ -55,6 +80,7 @@ const Contact = () => {
               sx={{
                 backgroundColor: "white",
               }}
+              onChange={e => setCompany(e.target.value)}
             />
           </div>
 
@@ -70,6 +96,7 @@ const Contact = () => {
               sx={{
                 backgroundColor: "white",
               }}
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
 
@@ -86,6 +113,7 @@ const Contact = () => {
               sx={{
                 backgroundColor: "white",
               }}
+              onChange={e => setMessage(e.target.value)}
             />
           </div>
 
@@ -103,6 +131,9 @@ const Contact = () => {
           >
             Send Message
           </Button>
+          {/* <div className="flex justify-center">
+            <SocialMediaLinks />
+          </div> */}
         </form>
       </div>
     </Layout>
