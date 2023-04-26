@@ -3,6 +3,7 @@ import { navigate } from "gatsby-link"
 import { TextField, Button } from "@mui/material"
 import Switch from "@mui/material/Switch"
 import SocialMediaLinks from "../components/socialMediaLinks"
+import Subscribe from "../components/subscribe"
 
 // Form Helpers
 function encode(data) {
@@ -140,6 +141,8 @@ const ContactForm = () => {
           <SocialMediaLinks />
         </div>
       </form>
+
+      <Subscribe />
     </div>
   )
 }
