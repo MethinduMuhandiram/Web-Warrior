@@ -17,28 +17,28 @@ const ContactForm = () => {
     setChecked(event.target.checked)
   }
 
-  // const [fullName, setfullName] = useState('');
-  // const [company, setCompany] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [message, setMessage] = useState('');
+  const [fullName, setfullName] = useState("")
+  const [company, setCompany] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   const form = e.target;
-  //   fetch('/', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  //     body: encode({
-  //       'form-name': 'Contact',
-  //       fullName,
-  //       company,
-  //       email,
-  //       message,
-  //     }),
-  //   })
-  //     .then(() => navigate(form.getAttribute('action')))
-  //     .catch((error) => console.log(error));
-  // };
+  const handleSubmit = e => {
+    e.preventDefault()
+    const form = e.target
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "Contact",
+        fullName,
+        company,
+        email,
+        message,
+      }),
+    })
+      .then(() => navigate(form.getAttribute("action")))
+      .catch(error => console.log(error))
+  }
 
   return (
     <div className="p-5 w-full">
@@ -48,18 +48,25 @@ const ContactForm = () => {
         data-netlify="true"
         action="/success"
         data-netlify-honeypot="bot-field"
-        onSubmit="submit"
+        onSubmit={handleSubmit}
       >
         <input type="hidden" name="form-name" value="Contact"></input>
+        <p hidden>
+          <label>
+            Don’t fill this out: <input name="bot-field" onChange={() => {}} />
+          </label>
+        </p>
         <div className="flex flex-col md:flex-row my-5 gap-5">
           <TextField
             id="full-name"
-            name="full-name"
+            name="fullName"
             type="text"
             label="Full Name"
             required
             variant="outlined"
             className="w-full"
+            value={fullName}
+            onChange={e => setfullName(e.target.value)}
             sx={{
               backgroundColor: "white",
             }}
@@ -72,6 +79,8 @@ const ContactForm = () => {
             required
             variant="outlined"
             className="w-full"
+            value={company}
+            onChange={e => setCompany(e.target.value)}
             sx={{
               backgroundColor: "white",
             }}
@@ -87,6 +96,8 @@ const ContactForm = () => {
             required
             variant="outlined"
             className="w-full"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             sx={{
               backgroundColor: "white",
             }}
@@ -103,6 +114,8 @@ const ContactForm = () => {
             multiline
             rows={4}
             className="w-full"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
             sx={{
               backgroundColor: "white",
             }}
